@@ -1,24 +1,82 @@
 
 ----------Assignment - 6 Solution --------------
 	
-	1)Ans:- select count(employee_id) as "Total Employee" from employees where day(hire_date)>15;
+	1)Ans:- select count(employee_id) as "Total Employee" from test_intern_employees where day(hire_date)>15;
 
-	2)Ans:- select c.country_id,count(l.location_id) as 'Total Cities' from countries  c inner join locations l on 
-		c.country_id=l.country_id group by l.coutry_id;
+	2)Ans:- select c.country_id,count(l.location_id) as 'Total Cities' from test_intern_countries  c 
+		inner join test_intern_locations l on c.country_id=l.country_id group by l.coutry_id;
 
-	3)Ans:- select avg(e.salary) as 'Aevrage Salary',d.department_name from employees e inner join departmentsn d on
-		e.departments=d.departments group by d.departments_name; 
+	3)Ans:- select avg(e.salary) as 'Aevrage Salary',d.department_name from test_intern_employees e 
+		inner join test_intern_departments d on e.departments=d.departments group by d.departments_name; 
 
 	4)Ans:- select j.job_id,count(e.employees_id) as'Total Employees',sum(e.salary) as 'Sum Of Salary' 
-		,(j.min_salary-j.max_salary) as 'Difference Salary' from employee e inner join jobs j on
-		e.job_id=j.job_id group by j.job_id;
+		,(j.min_salary-j.max_salary) as 'Difference Salary' from test_intern_employee e 
+		inner join test_intern_jobs j on e.job_id=j.job_id group by j.job_id;
 
-	5)Ans:- select j.job_id from employee e inner join jobs j on e.job_id=j.job_id group by j.job_id having avg(e.salary)>10000;
+	5)Ans:- select j.job_id from test_intern_employee e inner join test_intern_jobs j 
+		on e.job_id=j.job_id group by j.job_id having avg(e.salary)>10000;
 
-	6)Ans:- select year(hire_date) 'Joining Year' from employee group by year(hire_date) having count(year(hire_date))>10;
+	6)Ans:- select year(hire_date) 'Joining Year' from test_intern_employee group by year(hire_date) having count(year(hire_date))
+		>10;
 
-	7)Ans:- select d.department_name from departments s inner join  employees e on d.department_id=e.department_id 
+	7)Ans:- select d.department_name from test_intern_departments s inner join  
+		test_intern_employees e on d.department_id=e.department_id 
 		group by d.departmet_name having count(e.commission_pct is not null)>5
 	
-	8)Ans:- 
+	8)Ans:- SELECT employee_id FROM test_intern_employees WHERE employee_id = ALL(SELECT employee_id FROM job_history);
+	
+	9)Ans:- select j.job_id from test_intern_jobs j inner join test_intern_employee e on j.job_id=e.job_id where day(hire_date)>100;
+	
+       10)Ans:- select department_id,year(hire_date) as 'Year',count(employee_id) from test_intern_employees group by department_id;  
+       
+       11)Ans:- select d.department_id,d.manager_id from test_intern_departments as d inner join test_intern_employees e 
+		on d.manager_id=e.manager_id group by d.manager_id having count(e.employee_id)>5;
+		
+       12)Ans:- select d.department_name,d.manager_id,l.city from test_intern_departments as d left join test_intern_locations
+		as l on d.location_id=l.location_id;
+		
+       13)Ans:- select c.country_name,l.city,d.department_name from test_intern_countries as c 
+		inner join test_intern_locations as l inner join test_intern_departments d
+		on c.country_id=l.country_id and l.location_id=d.location_id; 
+		
+	14)Ans:- select j.job_title,d.department_name,e.last_name,jh.start_date from test_intern_employees e 
+		inner join test_intern_departments d on e.department_id=d.department_id
+		inner join test_intern_job_history  jh on e.employee_id=jh.employee_id
+		inner join test_intern_jobs j on j.job_id=jh.job_id
+		where year(jh.start_date) between 2000 and 2005;
+		
+	15)Ans:- select j.job_title,avg(e.employee_id) as 'Average Salary' from test_intern_employees as e
+		inner join test_intern_jobs as j on j.job_id=e.job_id;
+		
+	16)Ans:- select j.job_title,e.employee_id from test_intern_employees e inner join
+		test_intern_jobs j  on e.job_id=j.job_id where e.salary>15000;
+		
+	17)Ans:- select d.department_name,d.maganer_id,e.salary from test_intern_employees e inner join 
+		test_intern_departments d on e.department_id=d.department_id where TIMESTAMPDIFF(year(hire_date))>5 
+		and manager_id is null;
+	
+	18)Ans:- select e.first_name,e.last_name,j.job_title from test_intern_employees e left join test_intern_jobs j
+		on e.job_id=j.job_id where month(e.hire_date)<6;
+	
+	19)Ans:- select d.department_name,avg(e.salary) as 'Average Salary' ,count(e.employee_id) as 'Total Employee' from test_intern_employees
+		e inner join test_intern_departments d on e.department_id=d.department_id
+		where e.commission_pct is not null
+		group by d.department_name;
+	
+	20)Ans:- select month(hire_date) as 'Months' from test_intern_employees 
+		group by department_id having month(hire_date)>(select count(employee_id) from test_intern_employees);
+		
+	21)Ans:- select d.department_name,max(e.salary) from test_intern_employees e inner join test_intern_departments d
+		on e.department_id=d.department_id where e.salary>10000 group by department_name;
+	
+	22)Ans:- 
+
+
+
+ 
+
+
+
+
+
  
