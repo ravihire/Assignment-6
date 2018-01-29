@@ -1,0 +1,24 @@
+
+----------Assignment - 6 Solution --------------
+	
+	1)Ans:- select count(employee_id) as "Total Employee" from employees where day(hire_date)>15;
+
+	2)Ans:- select c.country_id,count(l.location_id) as 'Total Cities' from countries  c inner join locations l on 
+		c.country_id=l.country_id group by l.coutry_id;
+
+	3)Ans:- select avg(e.salary) as 'Aevrage Salary',d.department_name from employees e inner join departmentsn d on
+		e.departments=d.departments group by d.departments_name; 
+
+	4)Ans:- select j.job_id,count(e.employees_id) as'Total Employees',sum(e.salary) as 'Sum Of Salary' 
+		,(j.min_salary-j.max_salary) as 'Difference Salary' from employee e inner join jobs j on
+		e.job_id=j.job_id group by j.job_id;
+
+	5)Ans:- select j.job_id from employee e inner join jobs j on e.job_id=j.job_id group by j.job_id having avg(e.salary)>10000;
+
+	6)Ans:- select year(hire_date) 'Joining Year' from employee group by year(hire_date) having count(year(hire_date))>10;
+
+	7)Ans:- select d.department_name from departments s inner join  employees e on d.department_id=e.department_id 
+		group by d.departmet_name having count(e.commission_pct is not null)>5
+	
+	8)Ans:- 
+ 
