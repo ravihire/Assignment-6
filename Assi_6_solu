@@ -69,14 +69,37 @@
 	21)Ans:- select d.department_name,max(e.salary) from test_intern_employees e inner join test_intern_departments d
 		on e.department_id=d.department_id where e.salary>10000 group by department_name;
 	
-	22)Ans:- 
+	22)Ans:- select job_id,employee_id from test_intern_employees where year(hire_date)=year(sysdate());
+	
+	23)Ans:- select e.employee_id from test_intern_employees e inner join test_intern_job_history jh
+		on e.employee_id=jh.employee_id where jh.job_id is null; 
+		
+	24)Ans:- select j.job_title,avg(e.salary) as 'Average Salary' from test_intern_employees e 
+		inner join test_intern_jobs j
+		on e.job_id=j.job_id 
+		inner join test_intern_job_history jh
+		on j.job_id=jh.job_id;
+		
+	25)Ans:- select c.country_name,l.city, count(d.department_name) as 'Total Departments' from test_intern_countries c
+		inner join test_intern_locations l
+		on c.country_id=l.country_id inner join test_intern_departments d
+		on l.location_id=d.location_id group by d.department_name having count(d.department_id)>5;
+	
+	26)Ans:- select d.manager_id from test_intern_departments d left join test_intern_employees e 
+		on d.department_id=e.department_id
+		group by manager_id having count(employee_id)>5;
+		
+	27)Ans:- select d.department_name from test_intern_employees e inner join test_intern_departments d 
+		on e.department_id = d.department_id
+		where e.hire_date between DATE_SUB(curdate(), INTERVAL 2 YEAR ) and curdate();
+		
+	28)Ans:- select d.department_name,e.employee_id,max(e.salary) as 'Max Salary' from test_intern_departments d
+		inner join test_intern_employees e on d.department_id=e.department_id 
+		inner join test_intern_job_history jh on e.employee_id=jh.employee_id
+		group by d.department_name;
+		
+	29)Ans:- 1) select max(salary) 'Third Heighest' from test_intern_employees where salary<(select max(salary) from test_intern_employees
+			where salary<(select max(salary) from test_intern_employees));
 
-
-
- 		
-
-
-
-
-
+		2)select salary from test_intern_employees order by salary desc limit 3,1;
  
