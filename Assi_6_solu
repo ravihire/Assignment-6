@@ -25,7 +25,8 @@
 	
 	8)Ans:- SELECT employee_id FROM test_intern_employees WHERE employee_id = ALL(SELECT employee_id FROM job_history);
 	
-	9)Ans:- select j.job_id from test_intern_jobs j inner join test_intern_employee e on j.job_id=e.job_id where day(hire_date)>100;
+	9)Ans:- select j.job_id from test_intern_jobs j inner join test_intern_employee e on j.job_id=e.job_id where
+		day(hire_date)>100;
 	
        10)Ans:- select department_id,year(hire_date) as 'Year',count(employee_id) from test_intern_employees group by department_id;  
        
